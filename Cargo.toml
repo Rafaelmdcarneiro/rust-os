@@ -1,0 +1,90 @@
+[package]
+name = "d7os"
+version = "0.1.0"
+authors = ["Hannes Karppila <hannes.karppila@gmail.com>"]
+publish = false
+edition = "2018"
+
+# https://doc.rust-lang.org/nightly/cargo/reference/features.html#feature-resolver-version-2
+resolver = "2"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
+[profile.release.package.d7os]
+debug-assertions = true
+overflow-checks = true
+
+[profile.release.package.allogator]
+debug-assertions = true
+overflow-checks = true
+
+[features]
+self-test = [] # Run automatic tests and shutdown
+
+[dependencies]
+spin = "0.9"
+bitflags = "1.3"
+bit_field = "0.10.0"
+volatile = "0.2.6"
+static_assertions = "1.1"
+pinecone = "0.2"
+log = "0.4"
+
+acpi = "4.1.0"
+aml = "0.16.1"
+
+[dependencies.cpuio]
+git = "https://github.com/Dentosal/cpuio-rs"
+
+[dependencies.hashbrown]
+version = "0.11"
+features = ["nightly", "inline-more", "serde"]
+
+[dependencies.serde]
+version = "1.0"
+default-features = false
+features = ["alloc", "derive"]
+
+[dependencies.sha2]
+version = "0.10"
+default-features = false
+features = ["force-soft"]
+
+[dependencies.ed25519-dalek]
+# Open PR https://github.com/dalek-cryptography/ed25519-dalek/pull/189
+git = "https://github.com/Dentosal/ed25519-dalek"
+branch = "update-deps"
+default-features = false
+features = ["u64_backend", "rand", "sha2-force-soft"]
+
+[dependencies.rand_core]
+version = "0.6"
+default-features = false
+features = ["alloc"]
+
+[dependencies.lazy_static]
+version = "1.4"
+features = ["spin_no_std"]
+
+[dependencies.x86_64]
+git = "https://github.com/Dentosal/x86_64"
+features = ["use-serde"]
+
+[dependencies.d7abi]
+version = "*"
+path = "libs/d7abi"
+
+[dependencies.allogator]
+git = "https://github.com/Dentosal/allogator"
+features = ["extra-checks"]
+
+[dependencies.d7initrd]
+version = "*"
+path = "libs/d7initrd"
+
+[dev-dependencies]
+rand = "0.8"

@@ -1,0 +1,8 @@
+#include ./dbgenv_config/bochs_base
+log: -
+logprefix: %t%e%d
+debug: action=ignore
+info: action=report
+error: action=ask, XGUI=report, ne2k0=report
+panic: action=ask
+#include ./dbgenv_config/bochs_net
