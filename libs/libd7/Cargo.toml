@@ -1,0 +1,53 @@
+[package]
+name = "libd7"
+version = "0.1.0"
+authors = ["Hannes Karppila <hannes.karppila@gmail.com>"]
+publish = false
+edition = "2018"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
+[dependencies]
+spin = "0.9"
+pinecone = "0.2"
+log = "0.4"
+
+
+[dependencies.auto_enums]
+version = "0.7"
+features = ["transpose_methods"]
+
+[dependencies.hashbrown]
+version = "0.11"
+features = ["nightly", "inline-more", "serde"]
+
+[dependencies.serde]
+version = "1.0"
+default-features = false
+features = ["alloc", "derive"]
+
+[dependencies.chrono]
+version = "0.4"
+default-features = false
+features = ["alloc", "serde"]
+
+[dependencies.lazy_static]
+version = "1.4"
+features = ["spin_no_std"]
+
+[dependencies.x86_64]
+git = "https://github.com/Dentosal/x86_64"
+features = ["use-serde"]
+
+[dependencies.d7abi]
+path = "../d7abi"
+
+[dependencies.d7keymap]
+path = "../d7keymap"
+
+[dependencies.d7net]
+path = "../d7net"
